@@ -1,0 +1,163 @@
+emmiting to mvrx as flow 
+--> modularized app master
+
+model ---> repository
+repositry
+
+class PostRepository(private val api: PostApi) {
+
+    fun getPosts() = flow {
+        emit(api.getPosts())
+    }
+}
+
+---- >postviewmodel
+
+class PostViewModel(
+    initialState: PostState
+) : MavericksViewModel<PostState>(initialState), KoinComponent {
+    private val repository: PostRepository by inject()
+
+    init {
+        getData()
+    }
+
+    private fun getData() {
+        repository.getPosts().execute {
+            copy(post = it)
+        }
+    }
+}
+----> poststat
+data class PostState(
+    val post: Async<List<Post>> = Uninitialized
+) : MavericksState
+
+These are organic dietary supplements that enhances and promote the body's defenses to fight against infectious ailments whiles providing the needed nutrition for vital health. We deal in Skin care, Weight management, Personal care, Nutrition and more. Delivery services are available at an affordable prizes throughout the country. Am just a what's app/call away. +2330505504176
+rafihajewid6@yahoo.com
+Calling lotie with pagination inside composeable functions 
+lottieFilesSeachpage
+050 550 4176
+Nna Jewid
+
+class LottieFilesSearchViewModel @AssistedInject constructor(
+    @Assisted initialState: LottieFilesSearchState,
+    private val api: LottieFilesApi,
+) : MavericksViewModel<LottieFilesSearchState>(initialState) {
+    private var fetchJob: Job? = null
+
+    init {
+        onEach(LottieFilesSearchState::query) { query ->
+            fetchJob?.cancel()
+            if (query.isBlank()) {
+                setState { copy(results = emptyList(), currentPage = 1, lastPage = 1, fetchException = false) }
+            } else {
+                fetchJob = viewModelScope.launch(Dispatchers.IO) {
+                    val results = try {
+                        api.search(query, 1)
+                    } catch (e: Exception) {
+                        setState { copy(fetchException = true) }
+                        return@launch
+                    }
+                    setState {
+                        copy(
+                            results = results.data.map(::AnimationDataV2),
+                            currentPage = results.current_page,
+                            lastPage = results.last_page,
+                            fetchException = false
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    fun fetchNextPage() = withState { state ->
+        fetchJob?.cancel()
+        if (state.currentPage >= state.lastPage) return@withState
+        fetchJob = viewModelScope.launch(Dispatchers.IO) {
+            val response = try {
+                Log.d("Gabe", "Fetching page ${state.currentPage + 1}")
+                api.search(state.query, state.currentPage + 1)
+            } catch (e: Exception) {
+                setState { copy(fetchException = true) }
+                return@launch
+            }
+            setState {
+                copy(
+                    results = results + response.data.map(::AnimationDataV2),
+                    currentPage = response.current_page,
+                    fetchException = false
+                )
+            }
+        }
+    }
+
+    fun setQuery(query: String) = setState { copy(query = query, currentPage = 1, results = emptyList()) }
+
+    @AssistedInject.Factory
+    interface Factory : AssistedViewModelFactory<LottieFilesSearchViewModel, LottieFilesSearchState> {
+        override fun create(initialState: LottieFilesSearchState): LottieFilesSearchViewModel
+    }
+
+    companion object : DaggerMvRxViewModelFactory<LottieFilesSearchViewModel, LottieFilesSearchState>(LottieFilesSearchViewModel::class.java)
+}
+
+
+
+
+
+Calling directly using api and init updated function 
+from lottiefilesRecentsAndPopular pag
+
+
+
+class LottieFilesRecentAndPopularViewModel @AssistedInject constructor(
+    @Assisted initialState: LottieFilesRecentAndPopularState,
+    private val api: LottieFilesApi,
+) : MavericksViewModel<LottieFilesRecentAndPopularState>(initialState) {
+    private var fetchJob: Job? = null
+
+    init {
+        onEach(LottieFilesRecentAndPopularState::mode) {
+            setState { copy(results = emptyList(), currentPage = 0, lastPage = 1, fetchException = false) }
+            withState {
+                fetchNextPage()
+            }
+        }
+    }
+
+    fun fetchNextPage() = withState { state ->
+        fetchJob?.cancel()
+        if (state.currentPage >= state.lastPage) return@withState
+        fetchJob = viewModelScope.launch(Dispatchers.IO) {
+            val response = try {
+                Log.d("Gabe", "Fetching page ${state.currentPage + 1}")
+                when (state.mode) {
+                    LottieFilesMode.Recent -> api.getRecent(state.currentPage + 1)
+                    LottieFilesMode.Popular -> api.getPopular(state.currentPage + 1)
+                }
+            } catch (e: Exception) {
+                setState { copy(fetchException = true) }
+                return@launch
+            }
+            setState {
+                copy(
+                    results = results + response.data.map(::AnimationDataV2),
+                    currentPage = response.current_page,
+                    lastPage = response.last_page,
+                    fetchException = false
+                )
+            }
+        }
+    }
+
+    fun setMode(mode: LottieFilesMode) = setState { copy(mode = mode) }
+
+    @AssistedInject.Factory
+    interface Factory : AssistedViewModelFactory<LottieFilesRecentAndPopularViewModel, LottieFilesRecentAndPopularState> {
+        override fun create(initialState: LottieFilesRecentAndPopularState): LottieFilesRecentAndPopularViewModel
+    }
+
+    companion object : DaggerMvRxViewModelFactory<LottieFilesRecentAndPopularViewModel, LottieFilesRecentAndPopularState>(LottieFilesRecentAndPopularViewModel::class.java)
+}

@@ -1,0 +1,40 @@
+{ "results": [
+	{
+        "chat": {
+            "__type": "Pointer",
+            "className": "Chat",
+            "objectId": "GOhtFsYXnZ"
+        },
+        "createdAt": "2016-03-22T14:29:41.210Z",
+        "lastReadMessage": {
+            "__type": "Pointer",
+            "className": "Message",
+            "objectId": "Z2myf6KUoz"
+        },
+        "lastSeenCount": 1,
+        "name": "Test User",
+        "objectId": "9mif6xRecd",
+        "updatedAt": "2016-03-22T14:29:51.478Z",
+        "user": {
+            "__type": "Pointer",
+            "className": "_User",
+            "objectId": "X7YSD1dv0O"
+        }
+    },
+	{
+        "chat": {
+            "__type": "Pointer",
+            "className": "Chat",
+            "objectId": "GOhtFsYXnZ"
+        },
+        "createdAt": "2016-03-22T14:29:41.210Z",
+        "name": "Other user",
+        "objectId": "uAnVNdDIsw",
+        "updatedAt": "2016-03-22T14:29:41.362Z",
+        "user": {
+            "__type": "Pointer",
+            "className": "_User",
+            "objectId": "28P3bTKTyC"
+        }
+    }
+] }

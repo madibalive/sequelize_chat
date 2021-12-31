@@ -1,0 +1,17 @@
+{ "results": [
+	{
+        "appIdentifier": "com.badoo.chateau.example",
+        "appName": "Chateau Demo",
+        "appVersion": "1.1",
+        "createdAt": "2016-03-22T14:29:23.430Z",
+        "deviceToken": "APA91bH0Kp0ZkII4kkW57k-7Bp7CL5l7By-OajLkslTgAuzCqfsHrS16KlxlaCeJMTL-tkN3V45Qa7u6piU5_7d1mvAXMVtfavgLG5KWgOEroYUN3lKd1XaV-0k2Uc6qHB3VZXHP8CvI",
+        "deviceType": "android",
+        "installationId": "b96b7718-7dac-4ecb-93eb-edbf93b43caa",
+        "localeIdentifier": "en-US",
+        "objectId": "t3LjPBiURK",
+        "parseVersion": "1.13.0",
+        "pushType": "gcm",
+        "timeZone": "Europe/London",
+        "updatedAt": "2016-03-22T14:29:23.559Z"
+    }
+] }

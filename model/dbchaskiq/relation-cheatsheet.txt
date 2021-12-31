@@ -1,0 +1,280 @@
+
+
+ActiveStorageAttachment
+-----------------------
+belongs to        active_storage_blobs                     as Blob 
+
+
+ActiveStorageBlob
+-----------------
+has many          active_storage_attachments               as FkRailsC3b3935057s 
+
+
+Agent
+-----
+has many          oauth_access_grants                      as FkRails330c32d8d9s 
+has many          oauth_access_tokens                      as FkRailsEe63f25419s 
+has many          roles                                    as FkRailsE2cb86721cs 
+belongs to many   oauth_applications                       as OauthAccessGrantApplications 
+belongs to many   oauth_applications                       as OauthAccessTokenApplications 
+belongs to many   apps                                     as RoleApps 
+
+
+AppPackageIntegration
+---------------------
+has many          conversation_sources                     as FkRails4bb449dd09s 
+belongs to        apps                                     as App 
+belongs to        app_packages                             as AppPackage 
+belongs to many   conversations                            as ConversationSourceConversations 
+
+
+AppPackage
+----------
+has many          app_package_integrations                 as FkRails93b76ebd68s 
+belongs to many   apps                                     as AppPackageIntegrationApps 
+
+
+AppTranslation
+--------------
+
+
+AppUser
+-------
+has many          conversation_parts                       as FkRails6a76ee31a7s 
+has many          external_profiles                        as FkRailsC3a8b570e6s 
+has many          metrics                                  as FkRailsF9806df323s 
+belongs to        apps                                     as App 
+belongs to many   conversations                            as ConversationPartConversations 
+
+
+App
+---
+has many          app_package_integrations                 as FkRails1288141b26s 
+has many          app_users                                as FkRailsC4951bec77s 
+has many          article_collections                      as FkRails67a353c941s 
+has many          article_settings                         as FkRailsD7c60abac0s 
+has many          assignment_rules                         as FkRails46de859780s 
+has many          bot_tasks                                as FkRailsF778d52dffs 
+has many          campaigns                                as FkRailsF646524d6as 
+has many          conversations                            as FkRailsD2f2a92e1ds 
+has many          outgoing_webhooks                        as FkRailsCcc33e8ee5s 
+has many          quick_replies                            as FkRails994cc0ac2bs 
+has many          roles                                    as FkRails54f9cd362cs 
+belongs to many   app_packages                             as AppPackageIntegrationAppPackages 
+belongs to many   agents                                   as RoleAgents 
+
+
+AppsTranslation
+---------------
+
+
+ArInternalMetadatum
+-------------------
+
+
+ArticleCollectionTranslation
+----------------------------
+
+
+ArticleCollection
+-----------------
+has many          collection_sections                      as FkRails789989bad7s 
+belongs to        apps                                     as App 
+
+
+ArticleCollectionsTranslation
+-----------------------------
+
+
+ArticleContentTranslation
+-------------------------
+
+
+ArticleContent
+--------------
+
+
+ArticleContentsTranslation
+--------------------------
+
+
+ArticleSettingTranslation
+-------------------------
+
+
+ArticleSetting
+--------------
+belongs to        apps                                     as App 
+
+
+ArticleSettingsTranslation
+--------------------------
+
+
+ArticleTranslation
+------------------
+
+
+Article
+-------
+
+
+ArticlesTranslation
+-------------------
+
+
+AssignmentRule
+--------------
+belongs to        apps                                     as App 
+
+
+BotTask
+-------
+belongs to        apps                                     as App 
+
+
+Campaign
+--------
+belongs to        apps                                     as App 
+
+
+CollectionSectionTranslation
+----------------------------
+
+
+CollectionSection
+-----------------
+belongs to        article_collections                      as ArticleCollection 
+
+
+CollectionSectionsTranslation
+-----------------------------
+
+
+ConversationChannel
+-------------------
+belongs to        conversations                            as Conversation 
+
+
+ConversationPartBlock
+---------------------
+
+
+ConversationPartChannelSource
+-----------------------------
+belongs to        conversation_parts                       as ConversationPart 
+
+
+ConversationPartContent
+-----------------------
+
+
+ConversationPartEvent
+---------------------
+
+
+ConversationPart
+----------------
+has many          conversation_part_channel_sources        as FkRails67653f9e4ds 
+belongs to        app_users                                as AppUser 
+belongs to        conversations                            as Conversation 
+
+
+ConversationSource
+------------------
+belongs to        conversations                            as Conversation 
+belongs to        app_package_integrations                 as AppPackageIntegration 
+
+
+Conversation
+------------
+has many          conversation_channels                    as FkRails118220737ds 
+has many          conversation_parts                       as FkRails90c1b51308s 
+has many          conversation_sources                     as FkRails46bc64cb62s 
+belongs to        apps                                     as App 
+belongs to many   app_users                                as ConversationPartAppUsers 
+belongs to many   app_package_integrations                 as ConversationSourceAppPackageIntegrations 
+
+
+Event
+-----
+
+
+ExternalProfile
+---------------
+belongs to        app_users                                as AppUser 
+
+
+Metric
+------
+belongs to        app_users                                as AppUser 
+
+
+OauthAccessGrant
+----------------
+belongs to        agents                                   as ResourceOwner 
+belongs to        oauth_applications                       as Application 
+
+
+OauthAccessToken
+----------------
+belongs to        oauth_applications                       as Application 
+belongs to        agents                                   as ResourceOwner 
+
+
+OauthApplication
+----------------
+has many          oauth_access_grants                      as FkRailsB4b53e07b8s 
+has many          oauth_access_tokens                      as FkRails732cb83ab7s 
+belongs to many   agents                                   as OauthAccessGrantResourceOwners 
+belongs to many   agents                                   as OauthAccessTokenResourceOwners 
+
+
+OutgoingWebhook
+---------------
+belongs to        apps                                     as App 
+
+
+PreviewCard
+-----------
+
+
+QuickReply
+----------
+belongs to        apps                                     as App 
+
+
+QuickRepliesTranslation
+-----------------------
+
+
+QuickReplyTranslation
+---------------------
+
+
+Role
+----
+belongs to        apps                                     as App 
+belongs to        agents                                   as Agent 
+
+
+SchemaMigration
+---------------
+
+
+Segment
+-------
+
+
+Tagging
+-------
+belongs to        tags                                     as Tag 
+
+
+Tag
+---
+has many          taggings                                 as FkRails9fcd2e236bs 
+
+
+Visit
+-----

@@ -1,0 +1,20 @@
+{ "results": [
+	{
+        "chat": {
+            "__type": "Pointer",
+            "className": "Chat",
+            "objectId": "GOhtFsYXnZ"
+        },
+        "createdAt": "2016-03-22T14:29:49.931Z",
+        "from": {
+            "__type": "Pointer",
+            "className": "_User",
+            "objectId": "X7YSD1dv0O"
+        },
+        "localId": "X7YSD1dv0O-1458627119449",
+        "message": "Hello! How are you doing?",
+        "objectId": "Z2myf6KUoz",
+        "type": "text",
+        "updatedAt": "2016-03-22T14:29:49.931Z"
+    }
+] }

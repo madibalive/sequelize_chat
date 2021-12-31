@@ -1,0 +1,25 @@
+{ "results": [
+	{
+        "createdAt": "2016-03-22T14:29:41.169Z",
+        "lastMessage": {
+            "__type": "Pointer",
+            "className": "Message",
+            "objectId": "Z2myf6KUoz"
+        },
+        "messageCount": 1,
+        "objectId": "GOhtFsYXnZ",
+        "subscriptions": [
+            {
+                "__type": "Pointer",
+                "className": "ChatSubscription",
+                "objectId": "uAnVNdDIsw"
+            },
+            {
+                "__type": "Pointer",
+                "className": "ChatSubscription",
+                "objectId": "9mif6xRecd"
+            }
+        ],
+        "updatedAt": "2016-03-22T14:29:50.038Z"
+    }
+] }
